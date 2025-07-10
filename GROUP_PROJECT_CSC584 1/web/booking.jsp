@@ -237,8 +237,12 @@
                 boolean isEditable = "Pending".equalsIgnoreCase(b.getStatus()) || isAdmin;
         %>
         <form action="BookingServlet" method="post">
-        <input type="hidden" name="status" value="<%= b.getStatus() %>">
+        
         <input type="hidden" name="id" value="<%= b.getId() %>">
+
+        <% if (!isAdmin) { %>
+            <input type="hidden" name="status" value="<%= b.getStatus() %>">
+        <% } %>
         <tr>
             <td><%= row++ %></td>
             <td><%= b.getUsername() %></td>

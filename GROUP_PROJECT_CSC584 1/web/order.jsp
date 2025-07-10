@@ -298,9 +298,13 @@
             boolean isEditable = "Pending".equalsIgnoreCase(o.getStatus()) || isAdmin;
 %>
     <form action="OrderServlet" method="post">
-        <input type="hidden" name="status" value="<%= o.getStatus() %>">
+        
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<%= o.getId() %>">
+
+        <% if (!isAdmin) { %>
+            <input type="hidden" name="status" value="<%= o.getStatus() %>">
+        <% } %>
         <tr>
             <td><%= row++ %></td>
             <td><%= o.getUsername() %></td>
